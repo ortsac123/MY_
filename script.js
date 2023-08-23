@@ -21,6 +21,7 @@ function traerData(city) {
 function mostrarDatos(response) {
     console.log(response)
     const imagen = response.weather[0].icon
+    document.getElementById("datosClima").innerHTML = ""
 
 
     const nameCity = document.createElement('h2')
