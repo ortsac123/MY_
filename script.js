@@ -4,6 +4,7 @@ const urlBase1 = "https://api.openweathermap.org/data/2.5/weather";
 
 document.getElementById("botonBusqueda").addEventListener("click", () => {
     const city = document.getElementById("ciudadEntrada").value;
+
     if (city) {
         traerData(city);
     }
@@ -18,6 +19,18 @@ function traerData(city) {
 }
 
 function mostrarDatos(response) {
+    console.log(response)
     const temperatura = response.main.temp - difTem;
     document.getElementById("datosClima").innerHTML = temperatura.toFixed(2) + "°C";
+
+    const nameCity = document.createElement('p')
+    nameCity.textContent = response.name;
+    document.getElementById("datosClima").appendChild(nameCity)
+
+    const humidityCity = document.createElement('p')
+    humidityCity.textContent = 'Con humedad de:' + response.main.humidity
+
+    document.getElementById("datosClima").appendChild(humidityCity)
+
+
 }
