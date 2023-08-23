@@ -20,17 +20,28 @@ function traerData(city) {
 
 function mostrarDatos(response) {
     console.log(response)
-    const temperatura = response.main.temp - difTem;
-    document.getElementById("datosClima").innerHTML = temperatura.toFixed(2) + "°C";
+    const imagen = response.weather[0].icon
 
-    const nameCity = document.createElement('p')
+
+    const nameCity = document.createElement('h2')
     nameCity.textContent = response.name;
     document.getElementById("datosClima").appendChild(nameCity)
 
-    const humidityCity = document.createElement('p')
-    humidityCity.textContent = 'Con humedad de:' + response.main.humidity
+    const temperatura = document.createElement('p')
+    temperatura.textContent = (response.main.temp - difTem).toFixed(2) + "°C";
+    document.getElementById("datosClima").appendChild(temperatura)
 
+    const humidityCity = document.createElement('p')
+    humidityCity.textContent = response.weather[0].description
     document.getElementById("datosClima").appendChild(humidityCity)
+
+    const icono = document.createElement('img')
+    icono.src = `https://openweathermap.org/img/wn/${imagen}@2x.png`;
+    document.getElementById("datosClima").appendChild(icono)
+
+
+
+
 
 
 }
